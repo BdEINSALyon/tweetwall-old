@@ -16,10 +16,10 @@ development:
   adapter:  postgresql
   host:     localhost
   encoding: unicode
-  database: RubymineProjects_development
+  database: tweetwall_dev
   pool:     5
-  username: pvienne
-  password: 
+  username: tweetwall
+  password: tweetwall
   template: template0
 
   # Connect on a TCP socket. Omitted by default since the client uses a
@@ -44,18 +44,11 @@ test:
   adapter:  postgresql
   host:     localhost
   encoding: unicode
-  database: RubymineProjects_test
+  database: tweetwall_test
   pool:     5
-  username: pvienne
-  password: 
+  username: tweetwall
+  password: tweetwall
   template: template0
 
 production:
-  adapter:  postgresql
-  host:     localhost
-  encoding: unicode
-  database: RubymineProjects_production
-  pool:     5
-  username: pvienne
-  password: 
-  template: template0
+  url: <%= ENV['DATABASE_URL'] %>
