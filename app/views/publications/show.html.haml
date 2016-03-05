@@ -1,0 +1,27 @@
+%p#notice= notice
+
+%p
+  %b Author:
+  = @publication.author
+%p
+  %b Author image:
+  = @publication.author_image
+%p
+  %b Content:
+  = @publication.content
+%p
+  %b Resource type:
+  = @publication.resource_type
+%p
+  %b Resource:
+  = @publication.resource
+%p
+  %b Twitter:
+  = @publication.twitter_id
+%p
+  %b Published:
+  = @publication.published
+
+= link_to 'Edit', edit_publication_path(@publication)
+\|
+= link_to 'Back', publications_path

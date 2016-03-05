@@ -1,0 +1,33 @@
+%h1 Listing publications
+
+%table.table.table-striped.table-bordered
+  %thead
+    %tr
+      %th Content
+      %th Author
+      %th Resource Added
+      %th Published
+      %th{colspan:3}
+
+  %tbody
+    - @publications.each do |publication|
+      %tr
+        %td= publication.content
+        %td= publication.author
+        %td= publication.resource_type
+        %td= publication.published
+        %td
+          = link_to publication, class: %w{btn btn-primary} do
+            %i.glyphicon-info-sign.glyphicon
+        %td
+          = link_to edit_publication_path(publication), class: %w{btn btn-primary} do
+            %i.glyphicon-edit.glyphicon
+        %td
+          = link_to publication, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: %w{btn btn-danger} do
+            %i.glyphicon-trash.glyphicon
+
+%br
+
+= link_to new_publication_path, class: %w{btn btn-success btn-block} do
+  %i.glyphicon-plus.glyphicon
+  %span Add Publication

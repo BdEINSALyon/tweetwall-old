@@ -1,0 +1,14 @@
+= simple_form_for(@publication) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :author
+    = f.input :author_image
+    = f.input :content
+    = f.input :resource_type, collection: %w(image video youtube)
+    = f.input :resource
+    = f.input :twitter_id, editable: false
+    = f.input :published
+
+  .form-actions
+    = f.button :submit, class: 'btn-block'
