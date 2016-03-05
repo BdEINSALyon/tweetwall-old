@@ -1,7 +1,7 @@
 class PublicationsController < ApplicationController
   before_action :set_publication, only: [:show, :edit, :update, :destroy]
   # noinspection RailsParamDefResolve
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:index]
 
   # GET /publications
   # GET /publications.json

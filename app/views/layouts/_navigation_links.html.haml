@@ -1,0 +1,8 @@
+
+%ul.nav.navbar-nav.pull-left
+  %li= link_to 'Publications', :publications
+%ul.nav.navbar-nav.pull-right
+  - if current_user
+    %li= link_to 'Logout', :destroy_user_session, method: :delete
+  - else
+    %li= link_to 'Login', :new_user_session
