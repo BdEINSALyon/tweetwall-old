@@ -120,23 +120,71 @@
 .tweet-1{
   .tweet{
     height: 510px;
-    .media{
-      text-align: center;
-      > *{
-        margin-top: 12px;
-      }
-      img{
-        height: 300px;
-      }
-      video{
-        height: 300px;
-      }
-    }
   }
 }
 
 .tweet-2{
   .tweet{
     height: 22.5%;
+  }
+}
+
+#screen{
+  position: absolute;
+  top:0;
+  bottom:150px;
+  left:0;
+  right:0;
+  overflow: hidden;
+
+  .tweet-1, .tweet-2{
+    height: 100%;
+    width: 100%;
+  }
+
+  .tweet-1{
+    .tweet{
+      padding: 20px;
+      height: 60%;
+      .content{
+        float: left;
+        width: 55%;
+        height: 100%;
+      }
+      .media:after{
+        clear: both;
+      }
+      .media{
+        width: 40%;
+        overflow: hidden;
+        float: right;
+        text-align: center;
+        > *{
+          height: 100%;
+          width: 100%;
+        }
+      }
+
+    }
+    .tweet-from{
+      height: 25%;
+    }
+  }
+
+  .tweet-2{
+    .tweet{
+      height: 20%;
+      .content{
+        height: 100%;
+        width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-size: 2vw;
+      }
+    }
+    .tweet-from{
+      height: 20%;
+      margin-top: 5%;
+    }
   }
 }

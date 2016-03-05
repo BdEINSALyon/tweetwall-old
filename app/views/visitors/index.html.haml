@@ -1,19 +1,19 @@
-.tweet-1
+.tweet-2
   .tweet
     .content
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vitae fermentum mauris. Donec pulvinar eget justo quis suscipit. Quisque tincidunt risus ac est fringilla elementum. Etiam in dolor est. Cras sed placerat quam. Quisque posuere.
-    .media
+    -#.media
       -#%img{src:'http://photo.animationtriangle.fr/2012/bal4.jpg'}
-      %video.visible.playing{'autoplay'=>true,'loop'=>true, :preload => "auto", :src => "https://pbs.twimg.com/tweet_video/CcqIXtbUsAEkHSV.mp4", :type => "video/mp4"}
+      -#%video.visible.playing{'autoplay'=>true,'loop'=>true, :preload => "auto", :src => "https://pbs.twimg.com/tweet_video/CcqIXtbUsAEkHSV.mp4", :type => "video/mp4"}
   .tweet-from
     %img{src: 'https://pbs.twimg.com/profile_images/694955623826391040/QyciGmjW_bigger.jpg'}
     %span.user
       @AliceLmbc
-      -#.tweet
-      -#  .content
-      -#    ='#YaQueDansLesPubs '
-      -#    que tu ne butes pas ta petite soeur qui vient te réveiller le week-end pour bouffer des knakis.
-      -#
-      -#.tweet-from
-      -#  %img{src: 'https://pbs.twimg.com/profile_images/694955623826391040/QyciGmjW_bigger.jpg'}
-      -#  %span.user @AliceLmbc
+  .tweet
+    .content
+      ='#YaQueDansLesPubs '
+      que tu ne butes pas ta petite soeur qui vient te réveiller le week-end pour bouffer des knakis.
+
+  .tweet-from
+    %img{src: 'https://pbs.twimg.com/profile_images/694955623826391040/QyciGmjW_bigger.jpg'}
+    %span.user @AliceLmbc
