@@ -1,5 +1,7 @@
 $ ->
   message = $('.display')
+  if message.length <= 0
+    return false
   loader = $('#loader')
   updateIntervalTime = 5000
   animationsIn = ['bounceInRight', 'bounceInUp', 'bounceInDown', 'bounceInLeft']
@@ -23,10 +25,10 @@ $ ->
   nextGraphicUpdate = updateIntervalTime
 
   writeTweetInDOM = (tweet) ->
-    message.find('.content > span').html(tweet.content)
+    message.find('.content').html(twemoji.parse(tweet.content))
     message.find('.tweet-from > .user').html(tweet.author)
     message.find('.tweet-from > img').attr('src', tweet.author_image)
-    unless tweet.resource_type == ""
+    unless tweet.resource_type == "" or tweet.resource_type == null
       message.find('.tweet').addClass('with-resource')
       message.find('.tweet').removeClass('without-resource')
       media = message.find('.media')
@@ -46,7 +48,7 @@ $ ->
       message.find('.tweet').addClass('without-resource')
     if tweet.time
       nextGraphicUpdate = Math.max(tweet.time-2,updateIntervalTime)
-    message.find('.content').textfill('50')
+    #message.find('.content').textfill('50')
 
   loadNextTweet = (animationOut, animationIn) ->
     message.addClass('hide')
@@ -81,3 +83,7 @@ $ ->
       setTimeout(refreshFromPool, 10)
   updatePool()
   setTimeout(refreshFromPool, 100);
+  setInterval( () ->
+    if(firstLoad == false)
+      $('.content').fitText()
+  , 100)

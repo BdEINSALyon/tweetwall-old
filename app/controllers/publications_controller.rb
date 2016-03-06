@@ -5,11 +5,13 @@ class PublicationsController < ApplicationController
 
   # GET /refresh
   def refresh
-    PublicationsController.twitter.search('#FeteDesGrandMeres  -rt').each do |tweet|
+    hashtag = params['hashtag'] || '#balinsalyon'
+    PublicationsController.twitter.search("#{hashtag}").each do |tweet|
       unless Publication.find_by_twitter_id tweet.id
         pub = Publication.new author: "@#{tweet.user.screen_name}",
                               author_image: tweet.user.profile_image_url_https.to_s,
                               content: tweet.full_text,
+                              twitter_id: tweet.id,
                               published: false
         if tweet.media.first
           m = tweet.media.first
@@ -52,7 +54,7 @@ class PublicationsController < ApplicationController
   # GET /publications
   # GET /publications.json
   def index
-    @publications = Publication.all
+    @publications = Publication.all.order(:published).order(:created_at).reverse
     respond_to do |format|
       format.html { render :index }
       format.json { render json: Publication.where(published: true)}
