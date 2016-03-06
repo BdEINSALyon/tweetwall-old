@@ -7,6 +7,10 @@ class PublicationsController < ApplicationController
   # GET /publications.json
   def index
     @publications = Publication.all
+    respond_to do |format|
+      format.html { render :index }
+      format.json { render json: Publication.where(published: true)}
+    end
   end
 
   # GET /publications/1

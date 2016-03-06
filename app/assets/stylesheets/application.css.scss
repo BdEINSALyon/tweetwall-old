@@ -130,8 +130,8 @@
         width: 55%;
         height: 100%;
         font-size: xx-large;
-        line-height: 140%;
-        text-align: justify;
+        line-height: 160%;
+        text-align: center;
       }
       .media:after{
         clear: both;
@@ -147,9 +147,13 @@
         }
       }
       &.without-resource{
-        height: 40%;
+        height: 30%;
+        margin-top: 15%;
         .content{
           width: 100%;
+        }
+        .media{
+          display: none;
         }
       }
       &.with-resource{
