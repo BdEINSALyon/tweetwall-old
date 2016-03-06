@@ -2,7 +2,6 @@ $ ->
   animate = () ->
     message = $('.display')
     message.removeClass('hide')
-    #message.show ->
     message.addClass('animated flipInX')
     message.one('webkitAnimationEnd oanimationend oAnimationEnd msAnimationEnd animationend', ->
       message.removeClass('animated flipInX');
