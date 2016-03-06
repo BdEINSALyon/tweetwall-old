@@ -1,7 +1,53 @@
 class PublicationsController < ApplicationController
-  before_action :set_publication, only: [:show, :edit, :update, :destroy]
+  before_action :set_publication, only: [:show, :edit, :update, :destroy, :publish, :hide]
   # noinspection RailsParamDefResolve
   before_action :authenticate_user!, except: [:index]
+
+  # GET /refresh
+  def refresh
+    PublicationsController.twitter.search('#FeteDesGrandMeres  -rt').each do |tweet|
+      unless Publication.find_by_twitter_id tweet.id
+        pub = Publication.new author: "@#{tweet.user.screen_name}",
+                              author_image: tweet.user.profile_image_url_https.to_s,
+                              content: tweet.full_text,
+                              published: false
+        if tweet.media.first
+          m = tweet.media.first
+          if m.instance_of? Twitter::Media::Photo
+            pub.resource_type = 'image'
+            pub.resource = m.media_uri_https
+          elsif m.instance_of? Twitter::Media::Video
+            pub.resource_type = 'video'
+            pub.resource = m.video_info.variants.first.url.to_s
+            pub.time = m.video_info.duration_millis
+          elsif m.instance_of? Twitter::Media::AnimatedGif
+            pub.resource_type = 'gif'
+            pub.resource = m.video_info.variants.first.url.to_s
+          end
+        end
+        pub.save!
+      end
+    end
+    redirect_to action: :index
+  end
+
+  # GET /publications/1/publish
+  def publish
+    @publication.update! published: true
+    respond_to do |format|
+      format.html { redirect_to action: :index }
+      format.json { render json: {status: @publication.published}}
+    end
+  end
+
+  # GET /publications/1/hide
+  def hide
+    @publication.update! published: false
+    respond_to do |format|
+      format.html { redirect_to action: :index }
+      format.json { render json: {status: @publication.published}}
+    end
+  end
 
   # GET /publications
   # GET /publications.json
@@ -68,6 +114,16 @@ class PublicationsController < ApplicationController
   end
 
   private
+    @twitter_api = nil
+    def self.twitter
+      @twitter_api = Twitter::REST::Client.new do |config|
+        config.consumer_key = ENV['CONSUMER_KEY']
+        config.consumer_secret = ENV['CONSUMER_SECRET']
+        config.access_token = ENV['YOUR_ACCESS_TOKEN']
+        config.access_token_secret = ENV['YOUR_ACCESS_SECRET']
+      end if @twitter_api.nil?
+      @twitter_api
+    end
   # Use callbacks to share common setup or constraints between actions.
     def set_publication
       @publication = Publication.find(params[:id])

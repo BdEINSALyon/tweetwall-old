@@ -36,13 +36,16 @@ $ ->
       switch tweet.resource_type
         when 'image' then media.find('img').attr('src', tweet.resource).removeClass('hide')
         when 'video'
+          video = media.find('video').attr('src', tweet.resource).removeClass('hide')[0]
+          video.play()
+        when 'gif'
           domElem = media.find('video').attr('src', tweet.resource).removeClass('hide')[0]
           domElem.play()
     else
       message.find('.tweet').removeClass('with-resource')
       message.find('.tweet').addClass('without-resource')
     if tweet.time
-      nextGraphicUpdate = Math.max(tweet.time-2,updateIntervalTime/1000) * 1000
+      nextGraphicUpdate = Math.max(tweet.time-2,updateIntervalTime)
     message.find('.content').textfill('50')
 
   loadNextTweet = (animationOut, animationIn) ->
