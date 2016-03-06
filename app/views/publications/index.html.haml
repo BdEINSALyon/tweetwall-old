@@ -51,3 +51,5 @@
 = link_to new_publication_path, class: %w{btn btn-success btn-block} do
   %i.glyphicon-plus.glyphicon
   %span Add Publication
+
+= will_paginate @publications, renderer: BootstrapPagination::Rails

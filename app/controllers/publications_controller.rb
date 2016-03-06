@@ -54,7 +54,7 @@ class PublicationsController < ApplicationController
   # GET /publications
   # GET /publications.json
   def index
-    @publications = Publication.all.order(:published).order(:created_at).reverse
+    @publications = Publication.all.order(:published).order(:created_at).reverse_order.paginate(:page => params[:page])
     respond_to do |format|
       format.html { render :index }
       format.json { render json: Publication.where(published: true)}
