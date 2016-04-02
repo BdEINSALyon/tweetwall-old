@@ -26,6 +26,20 @@
   background: #1F0D3D;
 }
 
+#title{
+  text-align: center;
+  margin-top: 5px;
+  font-size: 20px;
+  line-height: 60px;
+  vertical-align: middle;
+  color: #F7F7F7;
+  text-transform: uppercase;
+  img{
+    height:60px;
+    display: inline;
+  }
+}
+
 .logos{
   position: fixed;
   bottom: 0;
@@ -36,7 +50,7 @@
   text-align: center;
   background: rgba(150,150,150,0.1);
   img{
-    height: 125px;
+    height: 110px;
   }
   .bal{
     height: 130px;

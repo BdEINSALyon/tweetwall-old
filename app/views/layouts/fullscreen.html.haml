@@ -9,6 +9,10 @@
     = csrf_meta_tags
     %script{src:'//twemoji.maxcdn.com/2/twemoji.min.js'}
   %body.full-screen
-    #screen= yield
+    #screen
+      #title
+        %img{src:asset_url('twitter.png')}
+        %span #balinsalyon
+      = yield
     .logos
       %img{src:asset_url('bal.png')}
