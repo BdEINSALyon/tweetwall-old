@@ -25,7 +25,7 @@ $ ->
   nextGraphicUpdate = updateIntervalTime
 
   writeTweetInDOM = (tweet) ->
-    message.find('.content').html(twemoji.parse(tweet.content))
+    message.find('.content').html(twemoji.parse(urlify(tweet.content)))
     message.find('.tweet-from > .user').html(tweet.author)
     message.find('.tweet-from > img').attr('src', tweet.author_image)
     unless tweet.resource_type == "" or tweet.resource_type == null

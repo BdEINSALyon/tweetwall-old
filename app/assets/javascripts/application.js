@@ -16,3 +16,7 @@
 //= require turbolinks
 //= require bootstrap-sprockets
 //= require_tree .
+function urlify(text) {
+    var urlRegex = /(https?:\/\/[^\s]+)/g;
+    return text.replace(urlRegex, '')
+}
