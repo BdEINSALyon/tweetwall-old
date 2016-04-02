@@ -28,13 +28,14 @@
 
 .logos{
   position: fixed;
-  bottom: 20px;
-  left: 20px;
-  right: 20px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 20px;
   z-index: -1;
-  text-align: left;
+  text-align: center;
+  background: rgba(150,150,150,0.1);
   img{
-    float: left;
     height: 125px;
   }
   .bal{
@@ -78,7 +79,7 @@
     width: 100%;
     .tweet{
       clear: both;
-      margin-top: 5%;
+      margin-top: 2%;
       margin-right: 10%;
       margin-left: 10%;
       background: white;
@@ -112,7 +113,7 @@
       }
       &.without-resource{
         height: 30%;
-        margin-top: 15%;
+        margin-top: 5%;
         .content{
           width: 100%;
         }
